@@ -37,6 +37,11 @@ RUN curl -LO https://github.com/derailed/k9s/releases/download/v0.20.5/k9s_Linux
 RUN curl -LO https://releases.hashicorp.com/terraform/0.12.26/terraform_0.12.26_linux_amd64.zip \
     && unzip terraform_0.12.26_linux_amd64.zip \
     && mv terraform /usr/local/bin/terraform
+
+RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" \
+    && unzip awscliv2.zip \
+    && ./aws/install
+ENV AWS_PAGER ''
 RUN rm -rf /tmp
 WORKDIR /
 
