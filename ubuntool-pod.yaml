@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ubuntool
+  labels:
+    app: ubuntool
+  namespace: default
+spec:
+  # nodeName: mynode-01
+  containers:
+  - image: timmyolson/ubuntool
+    # This is a helpful way to make PID 1 a sleep loop to debug the app.
+    command: ["/bin/bash", "-c", "--"]
+    args: ['while true; do sleep 2; echo "$HOSTNAME $(date)"; done']
+    imagePullPolicy: Always
+    name: ubuntool
+    resources:
+      limits:
+        cpu: "200m"
+        memory: "200Mi"
+      requests:
+        cpu: "100m"
+        memory: "100Mi"
+  restartPolicy: Always
