@@ -20,7 +20,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
       bc \
       lsof \
       python3 \
-      python3-pip
+      python3-pip \
     && apt-get purge -y --auto-remove \
     && rm -rf /var/lib/apt/lists/*
 
