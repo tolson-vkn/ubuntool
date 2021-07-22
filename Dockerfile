@@ -21,6 +21,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
       lsof \
       python3 \
       python3-pip \
+      coreutils \
     && apt-get purge -y --auto-remove \
     && rm -rf /var/lib/apt/lists/*
 
@@ -46,10 +47,15 @@ RUN curl -LO https://github.com/wercker/stern/releases/download/1.11.0/stern_lin
     && chmod +x stern_linux_amd64 \
     && mv stern_linux_amd64 /usr/local/bin/stern
 
+RUN curl -LO https://hey-release.s3.us-east-2.amazonaws.com/hey_linux_amd64 \
+    && chmod +x hey_linux_amd64 \
+    && mv hey_linux_amd64 /usr/local/bin/hey
+
 RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" \
     && unzip awscliv2.zip \
     && ./aws/install
 ENV AWS_PAGER ''
+
 RUN rm -rf /tmp/*
 WORKDIR /
 
