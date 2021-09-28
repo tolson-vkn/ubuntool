@@ -10,7 +10,7 @@ metadata:
 spec:
   # nodeName: ip-192.168.0.1.ec2.internal 
   containers:
-  - image: timmyolson/ubuntool
+  - image: ghcr.io/tolson-vkn/ubuntool
     # This is a helpful way to make PID 1 a sleep loop to debug the app.
     command: ["/bin/bash", "-c", "--"]
     args: ['while true; do sleep 2; echo "$HOSTNAME $(date)"; done']

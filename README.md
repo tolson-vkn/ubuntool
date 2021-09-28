@@ -28,3 +28,9 @@ root@cb50a8b4bda1:/# which iperf3
 root@cb50a8b4bda1:/# which ss
 /usr/bin/ss
 ```
+
+Privileged kube stuff in `privileged-ubuntool.yaml`, for docker host escalation, like how CoreOS toolbox worked:
+
+```
+docker run --rm -i -t --net=host --userns=host -v /:/host:ro --privileged ghcr.io/tolson-vkn/ubuntool:latest
+```

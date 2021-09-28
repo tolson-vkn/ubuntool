@@ -1,6 +1,6 @@
-TAG=$(shell git log --pretty=format:'%h' -n 1)
-REGISTRY=timmyolson/ubuntool
-PROVIDER=docker.io
+TAG=$(shell git describe --abbrev=0 --tags)
+REGISTRY=ubuntool
+PROVIDER=ghcr.io/tolson-vkn
 MAKE_DIR=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 
 .PHONY: help
@@ -20,14 +20,25 @@ shell: ## Start a /bin/bash shell on ubuntool container
 
 	docker run --rm -i -t ubuntool bash
 
+.PHONY: login
+login: ## Login to Github
+	@echo "Login to Github."
+	docker login $(PROVIDER)/$(REGISTRY)
+
 .PHONY: publish
 publish: ## Build locally and publish to registry
 
+	# Do this first
+	# git tag -a v1.1.0 a8cdab287c4f13d05c5bb5fa69a7879b166445ac
+	# git push origin v1.1.0
+
+	@make build
+	@make login
 	@printf '\033[33mBuild and Push ubuntool\033[0m\n';
 	docker build -t ubuntool:$(TAG) .
-	docker tag ubuntool:$(TAG) $(REGISTRY):$(TAG)
-	docker push $(REGISTRY):$(TAG)
+	docker tag ubuntool:$(TAG) $(PROVIDER)/$(REGISTRY):$(TAG)
+	docker push $(PROVIDER)/$(REGISTRY):$(TAG)
 
 	@printf '\033[33mUpdate the latest tag to $(TAG)\033[0m\n';
-	docker tag ubuntool:$(TAG) $(REGISTRY):latest
-	docker push $(REGISTRY):latest
+	docker tag ubuntool:$(TAG) $(PROVIDER)/$(REGISTRY):latest
+	docker push $(PROVIDER)/$(REGISTRY):latest
