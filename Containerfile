@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM docker.io/ubuntu
 
 # Packages
 RUN apt-get update && apt-get install --no-install-recommends -y \
