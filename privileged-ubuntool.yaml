@@ -23,7 +23,10 @@ spec:
     volumeMounts:
     - name: host-root-volume
       mountPath: /host
-      readOnly: true
+      # readonly: true
+    securityContext:
+      capabilities:
+        add: ["NET_ADMIN"]
   volumes:
   - name: host-root-volume
     hostPath:
