@@ -13,17 +13,17 @@ help:
 .PHONY: build
 build: ## Build ubuntool locally
 
-	docker build -t ubuntool .
+	podman build -t ubuntool .
 
 .PHONY: shell
 shell: ## Start a /bin/bash shell on ubuntool container
 
-	docker run --rm -i -t ubuntool bash
+	podman run --rm -i -t ubuntool bash
 
 .PHONY: login
 login: ## Login to Github
 	@echo "Login to Github."
-	docker login $(PROVIDER)/$(REGISTRY)
+	podman login $(PROVIDER)/$(REGISTRY)
 
 .PHONY: publish
 publish: ## Build locally and publish to registry
@@ -35,10 +35,10 @@ publish: ## Build locally and publish to registry
 	@make build
 	@make login
 	@printf '\033[33mBuild and Push ubuntool\033[0m\n';
-	docker build -t ubuntool:$(TAG) .
-	docker tag ubuntool:$(TAG) $(PROVIDER)/$(REGISTRY):$(TAG)
-	docker push $(PROVIDER)/$(REGISTRY):$(TAG)
+	podman build -t ubuntool:$(TAG) .
+	podman tag ubuntool:$(TAG) $(PROVIDER)/$(REGISTRY):$(TAG)
+	podman push $(PROVIDER)/$(REGISTRY):$(TAG)
 
 	@printf '\033[33mUpdate the latest tag to $(TAG)\033[0m\n';
-	docker tag ubuntool:$(TAG) $(PROVIDER)/$(REGISTRY):latest
-	docker push $(PROVIDER)/$(REGISTRY):latest
+	podman tag ubuntool:$(TAG) $(PROVIDER)/$(REGISTRY):latest
+	podman push $(PROVIDER)/$(REGISTRY):latest
