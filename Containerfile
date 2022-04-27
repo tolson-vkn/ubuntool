@@ -23,6 +23,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
       python3 \
       python3-pip \
       coreutils \
+      netcat \
     && apt-get purge -y --auto-remove \
     && rm -rf /var/lib/apt/lists/*
 
