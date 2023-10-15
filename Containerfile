@@ -33,19 +33,19 @@ RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/s
     && chmod +x kubectl \
     && mv kubectl /usr/local/bin/kubectl
 
-RUN curl -LO https://get.helm.sh/helm-v3.5.4-linux-amd64.tar.gz \
-    && tar -zxvf helm-v3.5.4-linux-amd64.tar.gz \
+RUN curl -LO https://get.helm.sh/helm-v3.13.1-linux-amd64.tar.gz \
+    && tar -zxvf helm-v3.13.1-linux-amd64.tar.gz \
     && mv linux-amd64/helm /usr/local/bin/helm
 
-RUN curl -LO https://github.com/derailed/k9s/releases/download/v0.24.9/k9s_Linux_x86_64.tar.gz \
-    && tar -zxvf k9s_Linux_x86_64.tar.gz \
+RUN curl -LO https://github.com/derailed/k9s/releases/download/v0.27.4/k9s_Linux_amd64.tar.gz \
+    && tar -zxvf k9s_Linux_amd64.tar.gz \
     && mv k9s /usr/local/bin/k9s
 
-RUN curl -LO https://releases.hashicorp.com/terraform/0.15.2/terraform_0.15.2_linux_amd64.zip \
-    && unzip terraform_0.15.2_linux_amd64.zip \
+RUN curl -LO https://releases.hashicorp.com/terraform/1.6.1/terraform_1.6.1_linux_amd64.zip \
+    && unzip terraform_1.6.1_linux_amd64.zip \
     && mv terraform /usr/local/bin/terraform
 
-RUN curl -LO https://github.com/wercker/stern/releases/download/1.11.0/stern_linux_amd64 \
+RUN curl -LO https://github.com/wercker/stern/releases/download/1.26.0/stern_linux_amd64 \
     && chmod +x stern_linux_amd64 \
     && mv stern_linux_amd64 /usr/local/bin/stern
 
