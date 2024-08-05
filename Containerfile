@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
       iputils-ping \
       dnsutils \
       postgresql-client \
+      postgresql-client-common \
       ca-certificates \
       nmap \
       openssh-client \ 
