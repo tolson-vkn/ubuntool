@@ -1,4 +1,4 @@
-FROM docker.io/ubuntu
+FROM docker.io/ubuntu:24.04
 
 # Packages
 RUN apt-get update && apt-get install --no-install-recommends -y \
@@ -24,8 +24,9 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
       python3 \
       python3-pip \
       coreutils \
-      netcat \
+      netcat-traditional \
       redis-tools \
+      podman \
     && apt-get purge -y --auto-remove \
     && rm -rf /var/lib/apt/lists/*
 
